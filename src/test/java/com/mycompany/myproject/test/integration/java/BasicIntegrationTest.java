@@ -16,6 +16,7 @@ package com.mycompany.myproject.test.integration.java;/*
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 
+import com.mycompany.myproject.GroovyPingVerticle;
 import org.junit.Test;
 import org.vertx.java.core.AsyncResult;
 import org.vertx.java.core.AsyncResultHandler;
@@ -23,7 +24,11 @@ import org.vertx.java.core.Handler;
 import org.vertx.java.core.http.HttpClientResponse;
 import org.vertx.java.core.http.HttpServer;
 import org.vertx.java.core.http.HttpServerRequest;
+import org.vertx.java.core.json.JsonObject;
 import org.vertx.testtools.TestVerticle;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.vertx.testtools.VertxAssert.*;
 
@@ -72,6 +77,13 @@ public class BasicIntegrationTest extends TestVerticle {
     assertEquals("bar", "bar");
     container.deployVerticle(SomeVerticle.class.getName());
   }
+
+  @Test
+    public void testDeployMyGroovyVerticle() {
+        assertEquals("bar", "bar");
+      container.deployVerticle("groovy:"+GroovyPingVerticle.class.getName());
+      container.deployVerticle("groovy:"+SomeVerticle.class.getName());
+    }
 
   @Test
   public void testCompleteOnTimer() {

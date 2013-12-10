@@ -28,11 +28,17 @@ import org.vertx.groovy.platform.Verticle
  */
 class GroovyPingVerticle extends Verticle {
 
-  def start() {
+    def start() {
 
-    vertx.eventBus.registerHandler("ping-address") { message ->
-      message.reply("pong!")
-      container.logger.info("Sent back pong groovy!")
+
+        vertx.eventBus.registerHandler("ping-address") { message ->
+            message.reply("pong!")
+            container.logger.info("Sent back pong groovy!")
+        }
+
+        println "In Groovy some verticle 2 !!"
+
+        container.logger.info("GroovyPingVerticle started");
+        container.logger.info("Config value foo is " + container.config().getString("foo"));
     }
-  }
 }
