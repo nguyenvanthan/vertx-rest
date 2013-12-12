@@ -20,25 +20,18 @@ package com.mycompany.myproject
 
 import org.vertx.groovy.platform.Verticle
 
-/*
- * This is a simple compiled Groovy verticle which receives `ping` messages on the event bus and sends back `pong`
- * replies
- *
- * @author <a href="http://tfox.org">Tim Fox</a>
- */
 class GroovyPingVerticle extends Verticle {
 
     def start() {
 
-
-        vertx.eventBus.registerHandler("ping-address") { message ->
-            message.reply("pong!")
-            container.logger.info("Sent back pong groovy!")
+        def pingHandler = { message ->
+            //container.logger.info("Sent back pong groovy!")
+            println "receive on bus: ${message.body}"
+            message.reply("pong ${message.body}!".toString())
         }
 
-        println "In Groovy some verticle 2 !!"
-
-        container.logger.info("GroovyPingVerticle started");
-        container.logger.info("Config value foo is " + container.config().getString("foo"));
+        vertx.eventBus.registerLocalHandler("ping", pingHandler)
+        println "Go go go !!"
+        //container.logger.info("GroovyPingVerticle started");
     }
 }

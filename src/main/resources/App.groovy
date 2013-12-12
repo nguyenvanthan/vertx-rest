@@ -1,4 +1,7 @@
 import com.mycompany.myproject.GroovyPingVerticle
+import com.mycompany.myproject.LazyServer
+import com.mycompany.myproject.Router
+import fr.javageek.JavaServer
 
 def webServerConf = [
 
@@ -6,7 +9,7 @@ def webServerConf = [
         port: 8080,
         host: 'localhost',
 
-        bridge: true,  // also act like an event bus bridge
+        //bridge: true,  // also act like an event bus bridge
 
         inbound_permitted: [ // allow messages from the client --> server
                 [:]
@@ -21,7 +24,18 @@ def webServerConf = [
 
 container.with {
 
-    deployVerticle "groovy:"+GroovyPingVerticle.class.getName()
+    println 'deploy router verticle'
+    deployVerticle "groovy:" + Router.class.getName()
+
+    println 'deploy ping verticle'
+    deployVerticle "groovy:" + GroovyPingVerticle.class.getName()
+
+    println 'deploy lazy verticle'
+    deployVerticle "groovy:" + LazyServer.class.getName()
+
+    println 'deploy java server'
+    deployVerticle JavaServer.class.getName()
+
 
     // Start the web server, with the config we defined above
     deployModule('io.vertx~mod-web-server~2.0.0-final', webServerConf)

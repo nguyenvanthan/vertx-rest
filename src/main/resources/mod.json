@@ -4,12 +4,12 @@
 
   "auto-redeploy": true,
 
-  "description":"Put description of your module here",
+  "description":"Vertx rest-rx module",
   "licenses": ["The Apache Software License Version 2.0"],
-  "author": "Joe Bloggs",
+  "author": "Christian Nguyen Van Than",
 
   "developers": ["JavaGeekFr"],
-  "keywords": ["gerbils", "cars", "cheese", "chocolate", "underpants", "herring"],
-  "homepage": "url to your project page"
+  "keywords": ["vertx","rest","rxjava"],
+  "homepage": "somewhere"
 
 }

@@ -13,7 +13,7 @@ class GroovySomeVerticle extends Verticle {
     // You can also assert from other verticles!!
     assertEquals("foo", "foo");
 
-    println "In Groovy some verticle"
+    println "In Groovy some verticle, Banzai !!"
 
     // And complete tests from other verticles!!
     testComplete();
