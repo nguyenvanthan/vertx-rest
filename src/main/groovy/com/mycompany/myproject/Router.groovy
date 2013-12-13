@@ -12,9 +12,9 @@ class Router extends Verticle {
         router.get("/ping/:message", { req ->
             println "receive message: ${req.params['message']}"
             vertx.eventBus.send("ping", req.params['message']) { message ->
-                println "I received a reply ${message.body}"
+                //println "I received a reply ${message.body}"
+                req.response.end "OK !"
             }
-            req.response.end "OK !"
         })
 
         // the matcher for a specific id

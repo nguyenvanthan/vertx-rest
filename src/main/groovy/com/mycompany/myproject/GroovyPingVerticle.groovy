@@ -26,7 +26,7 @@ class GroovyPingVerticle extends Verticle {
 
         def pingHandler = { message ->
             //container.logger.info("Sent back pong groovy!")
-            println "receive on bus: ${message.body}"
+            //println "receive on bus: ${message.body}"
             message.reply("pong ${message.body}!".toString())
         }
 
