@@ -22,6 +22,17 @@ class Router extends Verticle {
             req.response.end 'UP !'
         })
 
+        // consult profile
+        router.get("/consultation/:memberId", { req ->
+            def profile = [:]
+            profile.memberId = req.params['memberId']
+            profile << req.params.entries
+            vertx.eventBus.send("consultation", profile) { message ->
+                req.response.putHeader("Content-Type", "application/json")
+                req.response.end message.body
+            }
+        })
+
         vertx.createHttpServer().requestHandler(router.asClosure()).listen(8888)
 
     }

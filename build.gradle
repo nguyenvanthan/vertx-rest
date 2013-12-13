@@ -63,6 +63,8 @@ dependencies {
   provided "org.codehaus.groovy:groovy-all:$groovyVersion"
   provided "io.vertx:lang-groovy:$groovyLangModVersion@jar"
 
+  compile "com.viadeo.visits:viadeo-visit-server:1.0-SNAPSHOT"
+
 }
 
 test {

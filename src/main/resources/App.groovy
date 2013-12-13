@@ -1,6 +1,7 @@
 import com.mycompany.myproject.GroovyPingVerticle
 import com.mycompany.myproject.LazyServer
 import com.mycompany.myproject.Router
+import com.viadeo.visit.ConsultProfileVerticle
 import fr.javageek.JavaServer
 
 def webServerConf = [
@@ -35,6 +36,9 @@ container.with {
 
     println 'deploy java server'
     deployVerticle JavaServer.class.getName()
+
+    println 'deploy consultprofile verticle'
+    deployVerticle "groovy:" + ConsultProfileVerticle.class.getName()
 
 
     // Start the web server, with the config we defined above
